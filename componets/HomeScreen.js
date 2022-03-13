@@ -17,11 +17,11 @@ import plants from "../data/plants";
 
 const { width, height } = Dimensions.get("window");
 
-function HomeScreen(props) {
+function HomeScreen({ navigation }) {
   const categories = ["Popular", "Organic", "Indoors", "Synthetic"];
   const [categoryIndex, setCategoryIndex] = useState(0);
 
-  const CategoriesList = () => {
+  const CategoriesList = ({ navigation }) => {
     return (
       <View style={styles.categoriescontainer}>
         {categories.map((item, index) => (
@@ -46,7 +46,9 @@ function HomeScreen(props) {
 
   const Card = ({ plants }) => {
     return (
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("DetailsScreen", plants)}
+      >
         <View style={styles.card}>
           <View style={styles.likelogo}>
             <View
@@ -119,7 +121,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
     backgroundColor: "white",
-    paddingTop: 70,
+    paddingTop: 30,
   },
   headersection: {
     paddingHorizontal: 20,
